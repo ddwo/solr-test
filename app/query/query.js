@@ -3,7 +3,7 @@
  */
 
 (function () {
-    angular.module('query', ['queryService']);
+    angular.module('query', ['queryProvider']);
 
     angular.module('query').directive("solrQuery", function () {
         return {

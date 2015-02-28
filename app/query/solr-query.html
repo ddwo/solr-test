@@ -1,33 +1,44 @@
 <!-- Solr query form -->
 <form name="solrQuery" ng-controller="QueryController as queryCtrl" ng-submit="queryCtrl.sendQuery(query)" class="container">
     <blockquote>
-        <strong ng-bind="queryCtrl.queryProvider.getQuery()"></strong>
+        <strong ng-bind="queryCtrl.queryProvider.getFullQuery()"></strong>
     </blockquote>
 
     <fieldset class="form-inline">
         <div class="row">
             <label for="hostname" class="col-sm-2">Hostname</label>
-            <input ng-model="queryCtrl.query.hostname" class="form-control col-sm-2" id="hostname"
+            <input ng-model="queryCtrl.queryProvider.hostname"
+                   ng-model-options="{ getterSetter : true }"
+                   class="form-control col-sm-2" id="hostname"
                    title="Hostname">
             <!--port-->
             <label for="port" class="col-sm-2">Port</label>
-            <input ng-model="queryCtrl.query.port" class="form-control col-sm-2" id="port" title="Port">
+            <input ng-model="queryCtrl.queryProvider.port"
+                   ng-model-options="{ getterSetter : true }"
+                   class="form-control col-sm-2" id="port" title="Port">
         </div>
         <!--solr url-->
         <div class="row">
             <label for="instance" class="col-sm-2">Solr Instance</label>
-            <input ng-model="queryCtrl.query.instance" class="form-control col-sm-2" id="instance"
+            <input ng-model="queryCtrl.queryProvider.instance"
+                   ng-model-options="{ getterSetter : true }"
+                   class="form-control col-sm-2" id="instance"
                    title="Instance">
 
             <label for="core" class="col-sm-2">Solr Core</label>
-            <input ng-model="queryCtrl.query.core" class="form-control col-sm-2" id="core" title="Core">
+            <input ng-model="queryCtrl.queryProvider.core"
+                   ng-model-options="{ getterSetter : true }"
+                   class="form-control col-sm-2" id="core" title="Core">
         </div>
     </fieldset>
 
     <!--query-->
     <fieldset class="form-group row">
         <label for="query" class="col-sm-2">Solr Query:</label>
-        <input ng-model="queryCtrl.query.query" class="form-control" id="query" title="Query">
+        <input ng-model="queryCtrl.queryProvider.query"
+               ng-model-options="{ getterSetter : true }"
+               class="form-control" id="query" title="Query"
+                value="test">
     </fieldset>
 
     <fieldset class="form-group">

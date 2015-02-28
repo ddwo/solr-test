@@ -3,7 +3,7 @@
  */
 
 (function () {
-    angular.module('result', ['queryService']);
+    angular.module('result', ['queryProvider']);
 
     angular.module('result').
         controller('ResultController', ResultController);

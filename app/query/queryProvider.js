@@ -2,32 +2,54 @@
  * Created by dwo on 2/27/15.
  */
 (function () {
-    angular.module('queryService', []).
+    angular.module('queryProvider', []).
         provider('queryProvider', queryProvider);
 
     function queryProvider() {
-        var query = {
+        var fullQuery = {
             hostname: "localhost",
-            port: 8983,
+            port: '8983',
             query: "*:*",
             instance: "solr",
             core: ""
         };
 
         var service = {
-            getQuery: function () {
-                return "http://" + query.hostname + ":" + query.port +
-                    "/" + query.instance + "/" + query.core + "/select?q=" +
-                    query.query + "&wt=json";
+            getFullQuery: function () {
+                return "http://" + fullQuery.hostname + ":" + fullQuery.port +
+                    "/" + fullQuery.instance + "/" + fullQuery.core + "/select?q=" +
+                    fullQuery.query + "&wt=json";
             },
-            // TODO: fix query so there isn't any namespace collision...
-            setQuery: function (hostname, port, query, instance, core) {
-                query.hostname = hostname;
-                query.port = port;
-                query.instance = instance;
-                query.core = core;
+            query: function(newQuery) {
+                if(angular.isDefined(newQuery)) {
+                    fullQuery.query = newQuery
+                }
+                return fullQuery.query;
+            },
+            hostname: function(newHostname) {
+                if(angular.isDefined(newHostname)) {
+                    fullQuery.hostname = newHostname;
+                }
+                return fullQuery.hostname;
+            },
+            port: function(newPort) {
+                if(angular.isDefined(newPort)) {
+                    fullQuery.port = newPort;
+                }
+                return fullQuery.port;
+            },
+            instance: function(newInstance) {
+                if(angular.isDefined(newInstance)) {
+                    fullQuery.instance = newInstance;
+                }
+                return fullQuery.instance;
+            },
+            core: function(newCore) {
+                if(angular.isDefined(newCore)) {
+                    fullQuery.core = newCore;
+                }
+                return fullQuery.core;
             }
-
         };
 
         this.$get = function () {
