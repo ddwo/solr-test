@@ -1,7 +1,7 @@
 <!-- Solr query form -->
 <form name="solrQuery" ng-controller="QueryController as queryCtrl" ng-submit="queryCtrl.sendQuery(query)" class="container">
     <blockquote>
-        <strong ng-bind="getQuery()"></strong>
+        <strong ng-bind="queryCtrl.queryProvider.getQuery()"></strong>
     </blockquote>
 
     <fieldset class="form-inline">

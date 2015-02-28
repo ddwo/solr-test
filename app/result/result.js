@@ -2,14 +2,24 @@
  * Created by dwo on 2/25/15.
  */
 
-(function() {
-    var app = angular.module('result', []);
+(function () {
+    angular.module('result', ['queryService']);
 
-    angular.module('result').directive("solrResult", function() {
+    angular.module('result').
+        controller('ResultController', ResultController);
+
+    function ResultController() {
+        // TODO; Fill in
+    }
+
+    angular.module('result').
+        directive("solrResult", solrResult());
+
+    function solrResult() {
         return {
             restrict: 'E',
             templateUrl: "result/solr-result.html"
-        };
-    });
+        }
+    }
 
 })();

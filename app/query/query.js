@@ -3,43 +3,36 @@
  */
 
 (function () {
-    angular.module('query', []);
+    angular.module('query', ['queryService']);
 
-    angular.module('query').directive("solrQuery", function() {
+    angular.module('query').directive("solrQuery", function () {
         return {
             restrict: 'E',
             templateUrl: "query/solr-query.html"
         };
     });
 
-    angular.module('query').controller('QueryController', ['$http', function ($http) {
-            // TODO: replace this with json, possibly?
-            this.query = {
-                hostname: "localhost",
-                port: "8983",
-                query: "*:*",
-                instance: "solr",
-                core: ""
-            };
-            this.response = {};
-            this.submitted = false;
-            this.sendQuery = function (query) {
-                $http.get(this.getQuery()).success(function (data, status, headers, config) {
-                    angular.module('query').
-                        controller('QueryController').
-                        response = data;
-
-                }).error(function (data, status, headers, config) {
-                    angular.module('query').
-                        controller('QueryController').
-                        response = "error!";
-                });
-            };
-            this.getQuery = function () {
-                return "http://" + this.query.hostname + ":" + this.query.port +
-                    "/" + this.query.instance + "/" + this.query.core + "/select?q=" +
-                    this.query.query + "&wt=json";
-            }
-        }]
+    angular.module('query').
+        controller('QueryController', ['$http', 'queryProvider',
+            function ($http, queryProvider) {
+                var vm = this;
+                // need explicit binding for the provider to access from the html:
+                vm.queryProvider = queryProvider;
+                vm.response = {};
+                vm.submitted = false;
+                vm.sendQuery = function (query) {
+                    $http.get(this.getQuery()).success(function (data, status, headers, config) {
+                        angular.module('query').
+                            controller('QueryController').
+                            // TODO: update this with new queryProvider code
+                            response = vm.data;
+                    }).error(function (data, status, headers, config) {
+                        // TODO: figure out why this doesn't work...
+                        angular.module('query').
+                            controller('QueryController').
+                            response = "error!";
+                    });
+                };
+            }]
     )
 })();
