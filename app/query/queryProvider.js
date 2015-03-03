@@ -6,6 +6,8 @@
         provider('queryProvider', queryProvider);
 
     function queryProvider() {
+
+        var $http = angular.injector(['ng']).get('$http');
         var fullQuery = {
             hostname: "localhost",
             port: '8983',
@@ -49,11 +51,21 @@
                     fullQuery.core = newCore;
                 }
                 return fullQuery.core;
-            }
+            },
+            runQuery: function(){
+                $http.get(service.getFullQuery()).
+                    success(httpSuccess).
+                    error(httpError)}
         };
 
-        this.$get = function () {
+        this.$get = function ( $http ) {
             return service
+        };
+        function httpSuccess(data, status, headers, config){
+            // TODO: link in resultProvider?
+        }
+        function httpError(date, status, headers, config){
+            // TODO: Link in resultProvider?
         }
 
     }

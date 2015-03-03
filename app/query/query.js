@@ -20,7 +20,7 @@
                 vm.queryProvider = queryProvider;
                 vm.response = {};
                 vm.submitted = false;
-                vm.sendQuery = function (query) {
+/*                vm.sendQuery = function (query) {
                     $http.get(this.getQuery()).success(function (data, status, headers, config) {
                         angular.module('query').
                             controller('QueryController').
@@ -32,7 +32,7 @@
                             controller('QueryController').
                             response = "error!";
                     });
-                };
+                };*/
             }]
     )
 })();

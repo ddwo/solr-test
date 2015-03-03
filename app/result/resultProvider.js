@@ -6,4 +6,14 @@
     angular.module('resultService', []).
         provider('resultProvider', resultProvider);
 
+    function resultProvider() {
+
+        var service = {
+
+        }
+        this.$get = function(){
+            return service
+        }
+    }
+
 });

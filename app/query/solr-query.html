@@ -1,5 +1,6 @@
 <!-- Solr query form -->
-<form name="solrQuery" ng-controller="QueryController as queryCtrl" ng-submit="queryCtrl.sendQuery(query)" class="container">
+<form name="solrQuery" ng-controller="QueryController as queryCtrl"
+      ng-submit="queryCtrl.queryProvider.runQuery()" class="container">
     <blockquote>
         <strong ng-bind="queryCtrl.queryProvider.getFullQuery()"></strong>
     </blockquote>
@@ -37,8 +38,7 @@
         <label for="query" class="col-sm-2">Solr Query:</label>
         <input ng-model="queryCtrl.queryProvider.query"
                ng-model-options="{ getterSetter : true }"
-               class="form-control" id="query" title="Query"
-                value="test">
+               class="form-control" id="query" title="Query">
     </fieldset>
 
     <fieldset class="form-group">
