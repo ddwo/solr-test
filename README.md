@@ -1,43 +1,12 @@
-# angular-seed — the seed for AngularJS apps
+# TT-RSS Solr Query Test
 
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
-
-The seed contains a sample AngularJS application and is preconfigured to install the Angular
-framework and a bunch of development and testing tools for instant web development gratification.
-
-The seed app doesn't do much, just shows how to wire two controllers and views together.
-
-
-## Getting Started
-
-To get you started you can simply clone the angular-seed repository and install the dependencies:
+This is a quick proof-of-concept single-page application to query a solr server containing TT-RSS data
+and display the results on a single page.
 
 ### Prerequisites
 
-You need git to clone the angular-seed repository. You can get git from
-[http://git-scm.com/](http://git-scm.com/).
-
-We also use a number of node.js tools to initialize and test angular-seed. You must have node.js and
-its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
-
-### Clone angular-seed
-
-Clone the angular-seed repository using [git][git]:
-
-```
-git clone https://github.com/angular/angular-seed.git
-cd angular-seed
-```
-
-If you just want to start a new project without the angular-seed commit history then you can do:
-
-```bash
-git clone --depth=1 https://github.com/angular/angular-seed.git <your-project-name>
-```
-
-The `depth=1` tells git to only pull down one commit worth of historical data.
+node.js
+bower
 
 ### Install Dependencies
 
@@ -82,24 +51,10 @@ Now browse to the app at `http://localhost:8000/app/index.html`.
 app/                    --> all of the source files for the application
   app.css               --> default stylesheet
   components/           --> all app specific modules
-    version/              --> version related components
-      version.js                 --> version module declaration and basic "version" value service
-      version_test.js            --> "version" value service tests
-      version-directive.js       --> custom directive that returns the current app version
-      version-directive_test.js  --> version directive tests
-      interpolate-filter.js      --> custom interpolation filter
-      interpolate-filter_test.js --> interpolate filter tests
-  view1/                --> the view1 view template and logic
-    view1.html            --> the partial template
-    view1.js              --> the controller logic
-    view1_test.js         --> tests of the controller
-  view2/                --> the view2 view template and logic
-    view2.html            --> the partial template
-    view2.js              --> the controller logic
-    view2_test.js         --> tests of the controller
+  query/                --> modules and providers related to the solr query
+  result/               ->> modules and providers related to solr results
   app.js                --> main application module
   index.html            --> app layout file (the main html template file of the app)
-  index-async.html      --> just like index.html, but loads js files asynchronously
 karma.conf.js         --> config file for running unit tests with Karma
 e2e-tests/            --> end-to-end tests
   protractor-conf.js    --> Protractor config file
@@ -198,22 +153,6 @@ bower update
 
 This will find the latest versions that match the version ranges specified in the `bower.json` file.
 
-
-## Loading Angular Asynchronously
-
-The angular-seed project supports loading the framework and application scripts asynchronously.  The
-special `index-async.html` is designed to support this style of loading.  For it to work you must
-inject a piece of Angular JavaScript into the HTML page.  The project has a predefined script to help
-do this.
-
-```
-npm run update-index-async
-```
-
-This will copy the contents of the `angular-loader.js` library file into the `index-async.html` page.
-You can run this every time you update the version of Angular that you are using.
-
-
 ## Serving the Application Files
 
 While angular is client-side-only technology and it's possible to create angular webapps that
@@ -244,21 +183,6 @@ Alternatively, you can choose to configure your own webserver, such as apache or
 configure your server to serve the files under the `app/` directory.
 
 
-### Running the App in Production
-
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are all the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static html, css and js files that just need to be hosted
-somewhere they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via xhr or other means, you need to figure
-out what is the best way to host the static files to comply with the same origin policy if
-applicable. Usually this is done by hosting the files by the backend server or through
-reverse-proxying the backend server(s) and webserver(s).
-
-
 ## Continuous Integration
 
 ### Travis CI
@@ -270,16 +194,6 @@ tests when you push to GitHub.
 
 You will need to enable the integration between Travis and GitHub. See the Travis website for more
 instruction on how to do this.
-
-### CloudBees
-
-CloudBees have provided a CI/deployment setup:
-
-<a href="https://grandcentral.cloudbees.com/?CB_clickstart=https://raw.github.com/CloudBees-community/angular-js-clickstart/master/clickstart.json">
-<img src="https://d3ko533tu1ozfq.cloudfront.net/clickstart/deployInstantly.png"/></a>
-
-If you run this, you will get a cloned version of this repo to start working on in a private git repo,
-along with a CI service (in Jenkins) hosted that will run unit and end to end tests in both Firefox and Chrome.
 
 
 ## Contact
