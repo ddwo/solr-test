@@ -1,13 +1,15 @@
 /**
  * Created by dwo on 2/27/15.
  */
-(function () {
-    angular.module('queryProvider', []).
+
+(function (){
+    angular.module('queryProvider', ['resultProvider']).
         provider('queryProvider', queryProvider);
 
     function queryProvider() {
 
         var $http = angular.injector(['ng']).get('$http');
+
         var fullQuery = {
             hostname: "localhost",
             port: '8983',
@@ -58,10 +60,12 @@
                     error(httpError)}
         };
 
-        this.$get = function ( $http ) {
+        this.$get = function ($http) {
             return service
         };
         function httpSuccess(data, status, headers, config){
+
+            resultProvider.createResults(data);
             // TODO: link in resultProvider?
         }
         function httpError(date, status, headers, config){

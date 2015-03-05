@@ -3,7 +3,7 @@
  */
 
 (function () {
-    angular.module('query', ['queryProvider']);
+    angular.module('query', ['queryProvider', 'resultProvider']);
 
     angular.module('query').directive("solrQuery", function () {
         return {
@@ -13,11 +13,12 @@
     });
 
     angular.module('query').
-        controller('QueryController', ['$http', 'queryProvider',
-            function ($http, queryProvider) {
+        controller('QueryController', ['$http', 'queryProvider', 'resultProvider',
+            function ($http, queryProvider, resultProvider) {
                 var vm = this;
                 // need explicit binding for the provider to access from the html:
                 vm.queryProvider = queryProvider;
+                vm.resultProvider = resultProvider;
                 vm.response = {};
                 vm.submitted = false;
 /*                vm.sendQuery = function (query) {
