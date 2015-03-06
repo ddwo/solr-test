@@ -10,7 +10,8 @@
 
         var $http = angular.injector(['ng']).get('$http');
 
-        var fullQuery = {
+        var data;
+        var queryData = {
             hostname: "localhost",
             port: '8983',
             query: "*:*",
@@ -20,39 +21,39 @@
 
         var service = {
             getFullQuery: function () {
-                return "http://" + fullQuery.hostname + ":" + fullQuery.port +
-                    "/" + fullQuery.instance + "/" + fullQuery.core + "/select?q=" +
-                    fullQuery.query + "&wt=json";
+                return "http://" + queryData.hostname + ":" + queryData.port +
+                    "/" + queryData.instance + "/" + queryData.core + "/select?q=" +
+                    queryData.query + "&wt=json";
             },
             query: function(newQuery) {
                 if(angular.isDefined(newQuery)) {
-                    fullQuery.query = newQuery
+                    queryData.query = newQuery
                 }
-                return fullQuery.query;
+                return queryData.query;
             },
             hostname: function(newHostname) {
                 if(angular.isDefined(newHostname)) {
-                    fullQuery.hostname = newHostname;
+                    queryData.hostname = newHostname;
                 }
-                return fullQuery.hostname;
+                return queryData.hostname;
             },
             port: function(newPort) {
                 if(angular.isDefined(newPort)) {
-                    fullQuery.port = newPort;
+                    queryData.port = newPort;
                 }
-                return fullQuery.port;
+                return queryData.port;
             },
             instance: function(newInstance) {
                 if(angular.isDefined(newInstance)) {
-                    fullQuery.instance = newInstance;
+                    queryData.instance = newInstance;
                 }
-                return fullQuery.instance;
+                return queryData.instance;
             },
             core: function(newCore) {
                 if(angular.isDefined(newCore)) {
-                    fullQuery.core = newCore;
+                    queryData.core = newCore;
                 }
-                return fullQuery.core;
+                return queryData.core;
             },
             runQuery: function(){
                 $http.get(service.getFullQuery()).
@@ -63,13 +64,11 @@
         this.$get = function ($http) {
             return service
         };
-        function httpSuccess(data, status, headers, config){
-
-            resultProvider.createResults(data);
-            // TODO: link in resultProvider?
+        function httpSuccess(newData, status, headers, config){
+            data = newData;
         }
         function httpError(date, status, headers, config){
-            // TODO: Link in resultProvider?
+            // TODO: Figure out what to do here...
         }
 
     }
