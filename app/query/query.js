@@ -6,11 +6,11 @@
     angular.module('query', ['queryProvider']);
 
     angular.module('query').
-        controller('QueryController', ['$http', 'queryProvider', queryDirective]);
+        controller('QueryController', ['$http', 'queryProvider', queryController]);
 
-    angular.module('query').directive("queryDirective", solrQuery);
+    angular.module('query').directive("solrQuery", solrQuery);
 
-    function queryDirective($http, queryProvider) {
+    function queryController($http, queryProvider) {
         var vm = this;
         // need explicit binding for the provider to access from the html:
         vm.queryProvider = queryProvider;
