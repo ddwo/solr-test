@@ -9,9 +9,9 @@
         controller('ResultController', ResultController);
 
     angular.module('result').
-        directive("resultDirective", solrResult);
+        directive("solrResult", solrResult);
 
-    function ResultController() {
+    function ResultController(queryProvider) {
         // TODO; Fill in
         var vm = this;
         //starting index for pagination

@@ -8,7 +8,8 @@
     angular.module('query').
         controller('QueryController', ['$http', 'queryProvider', queryController]);
 
-    angular.module('query').directive("solrQuery", solrQuery);
+    angular.module('query').
+        directive("solrQuery", solrQuery);
 
     function queryController($http, queryProvider) {
         var vm = this;

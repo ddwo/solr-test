@@ -10,13 +10,13 @@
 
         var $http = angular.injector(['ng']).get('$http');
 
-        var data;
         var queryData = {
             hostname: "localhost",
             port: '8983',
             query: "*:*",
             instance: "solr",
-            core: ""
+            core: "",
+            data: []
         };
 
         var service = {
@@ -58,14 +58,17 @@
             runQuery: function(){
                 $http.get(service.getFullQuery()).
                     success(httpSuccess).
-                    error(httpError)}
+                    error(httpError)},
+            data: function(){
+                return queryData.data;
+            }
         };
 
         this.$get = function ($http) {
             return service
         };
         function httpSuccess(newData, status, headers, config){
-            data = newData;
+            queryData.data = newData.response.docs;
         }
         function httpError(date, status, headers, config){
             // TODO: Figure out what to do here...
