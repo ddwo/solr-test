@@ -1,5 +1,7 @@
 <!--Individual query response-->
 <!--TODO: attach controller for result-->
-<div ng-repeat="item in queryCtrl.response.response.docs">
+
+<div  ng-controller="ResultController as resultCtrl"
+      ng-repeat="item in queryCtrl.response.response.docs">
     <a href="{{item.link}}" class="row">{{item.title[0]}}</a>
 </div>

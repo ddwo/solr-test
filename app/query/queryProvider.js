@@ -3,7 +3,7 @@
  */
 
 (function (){
-    angular.module('queryProvider', ['resultProvider']).
+    angular.module('queryProvider', []).
         provider('queryProvider', queryProvider);
 
     function queryProvider() {

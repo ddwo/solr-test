@@ -8,12 +8,17 @@
     angular.module('result').
         controller('ResultController', ResultController);
 
+    angular.module('result').
+        directive("resultDirective", solrResult);
+
     function ResultController() {
         // TODO; Fill in
+        var vm = this;
+        //starting index for pagination
+        vm.idx = 0;
+        // need explicit binding for the provider to access from the html:
+        vm.queryProvider = queryProvider;
     }
-
-    angular.module('result').
-        directive("solrResult", solrResult());
 
     function solrResult() {
         return {
